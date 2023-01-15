@@ -33,8 +33,6 @@ int XY(int x,int y)
    return i;
 }
 
-
-
 void waiting(CRGB color, int waiting_speed)
 {
   //WAITING
@@ -93,7 +91,6 @@ void waiting(CRGB color, int waiting_speed)
         light_up_offset_D(reverse_idx, loop_length_idx, color, 1);
     }
 
-    
       if(clk%2 == 0)
         idx_matrix -= 1;
       leds[XY(idx_matrix,1)] = color;
@@ -129,8 +126,6 @@ void waiting(CRGB color, int waiting_speed)
 
 void my_random(CRGB color, int m_speed)
 {
-  // RANDOM
-  //leds[k] = CHSV( random8(), 255, 255);
   init_leds_ears(CRGB::Black);
   init_leds(CRGB::Black);
   for(int k = 0; k < 40; k++)
@@ -152,7 +147,6 @@ void initBluetooth()
 String i;
 String updateSerial()
 {
-  //Serial.println("in updateserial");
   if(mySerial.available())
   {
     i = mySerial.readString();
@@ -191,15 +185,6 @@ void setup() {
 
 void loop() 
 { 
-  /*
-   * leds[2] = CHSV( random8(), 255, 255);
-   * for(int bright = BRIGHTNESS; bright >= 0; bright--)
-  {
-  FastLED.setBrightness( bright );
-  FastLED.show();
-  delay(40);
-  }
-  delay(2000);*/
     String my_word = "";
     my_word = updateSerial();
 
@@ -247,9 +232,6 @@ void loop()
       init_leds(CRGB::Black);
       init_leds_ears(m_color);
       saved_word.toUpperCase();
-      //Serial.print("The Word : ");
-      //Serial.println(my_word);
-      //Serial.println(my_word.length());
       // array of size of each letter of the word
       int array_size_letters[saved_word.length()];
       
@@ -259,11 +241,8 @@ void loop()
         total_size_letters += size_letter((String)saved_word[letter_idx]);
         array_size_letters[letter_idx] = size_letter((String)saved_word[letter_idx]);
       }
-      //Serial.println("A");
       int size_letters = -1;
       int letter_idx = 0;
-      //Serial.print("total_size_letters : ");
-      //Serial.println(total_size_letters);
       for(int row_idx = 0; row_idx < 12 + total_size_letters + saved_word.length(); row_idx++)
       {
         size_letters = -1;
@@ -277,8 +256,6 @@ void loop()
         }
         FastLED.show();
         delay(m_word_speed);
-        
-        //Serial.println(row_idx);
         
         size_letters = -1;
         for(int letter_idx = 0; letter_idx < saved_word.length(); letter_idx++)
